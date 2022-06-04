@@ -8,6 +8,8 @@ const cors = require('cors')
 
 const joi = require('joi')
 
+const artCateRouter = require('./router/artcate')
+
 // 将 cors 注册为全局中间件
 app.use(cors())
 
@@ -27,6 +29,9 @@ app.use(function (req, res, next) {
   }
   next()
 })
+
+// 为文章分类的路由挂载统一的访问前缀 /my/article
+app.use('/my/article', artCateRouter)
 
 // 导入配置文件
 const config = require('./config')

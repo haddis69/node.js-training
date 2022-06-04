@@ -17,6 +17,6 @@ const { reg_login_schema } = require('../schema/user')
 //数据验证失败后，终止后续代码的执行，并抛出一个全局的 Error 错误，进入全局错误级别中间件中进行处理
 router.post('/reguser', expressJoi(reg_login_schema), userHandler.regUser)
 // 登录
-router.post('/login', userHandler.login)
+router.post('/login', expressJoi(reg_login_schema), userHandler.login)
 
 module.exports = router

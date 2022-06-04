@@ -10,6 +10,8 @@ const joi = require('joi')
 
 const artCateRouter = require('./router/artcate')
 
+const articleRouter = require('./router/article')
+
 // 将 cors 注册为全局中间件
 app.use(cors())
 
@@ -58,6 +60,9 @@ app.use(function (err, req, res, next) {
   // 未知错误
   res.cc(err)
 })
+
+// 为文章的路由挂载统一的访问前缀 /my/article
+app.use('/my/article', articleRouter)
 
 // 调用 app.listen 方法，指定端口号并启动web服务器
 app.listen(3007, function () {
